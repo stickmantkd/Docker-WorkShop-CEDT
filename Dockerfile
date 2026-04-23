@@ -11,11 +11,11 @@ FROM node:20.11-slim AS builder
 WORKDIR /app
 
 # TODO(step-4b): copy package.json and package-lock.json, then install deps.
-COPY package*.json ./
+COPY app/package*.json ./
 RUN npm ci --omit=dev
 
 # TODO(step-4c): copy the rest of the app source into /app.
-COPY . .
+COPY app/. .
 
 # =============================================================================
 # Runtime stage — slim final image. Nothing from builder's caches leaks in.
